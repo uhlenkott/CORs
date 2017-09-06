@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        function getData() {
+            var clientID = "3MVG97wqanbUM37LAREDJMlpyJtrMv5a3hUxF7oV_e9OPzcyesk2uW_KFMwtgFotwmkoFWYCNpVZ_x8q7KUGe";
+            var clientSecret = "8090429779669169413";
+            var username = "robertu@chrysalisbts.com.custportal";
+            var password = "GoCougs2017!k8AB3SvZ8OnpbRqaqZtWEsnQW";
+            var redirectURI = "https://atmoseraportal.sharepoint.com/sites/AtmoseraV5/SitePages/EscalationContacts.aspx";
+            var requestUrl = "https://test.salesforce.com/services/oauth2/token?grant_type=password&client_id=" + clientID + "&client_secret=" + clientSecret + "&username=" + username + "&password=" + password + "&redirect_uri=" + redirectURI;
+            requestURL = "https://test.salesforce.com/services/oauth2/token?grant_type=password&client_id=3MVG97wqanbUM37LAREDJMlpyJtrMv5a3hUxF7oV_e9OPzcyesk2uW_KFMwtgFotwmkoFWYCNpVZ_x8q7KUGe&client_secret=8090429779669169413&username=robertu@chrysalisbts.com.custportal&password=GoCougs2017!k8AB3SvZ8OnpbRqaqZtWEsnQW&redirect_uri=https://atmoseraportal.sharepoint.com/sites/AtmoseraV5/SitePages/EscalationContacts.aspx";
+            //requestUrl = "https://test.salesforce.com";
+
+            doCORSRequest({
+                method: 'POST', url: requestUrl
+            }, function printResult(responseObject) {
+                var responseString = responseObject.toString();
+                var responseObject2 = JSON.parse(responseString);
+
+                alert('URL ' + responseObject2.instance_url);
+                alert('Local Access Token ' + responseObject2.access_token);
+            });
+        }
+
+        function doCORSRequest(options, printResult) {
+            // Originally got the below from https://cors-anywhere.herokuapp.com/
+            //var cors_api_url = 'http://atmoseraportal.herokuapp.com/'; // This one works
+            http://atmosera-cors.azurewebsites.net/
+            //var cors_api_url = 'http://portalnodeapp.azurewebsites.net/';
+            var cors_api_url = 'http://atmosera-cors.azurewebsites.net/';
+            var x = new XMLHttpRequest();
+            x.open(options.method, cors_api_url + options.url);
+            x.onload = x.onerror = function () {
+                printResult(x.responseText);
+            };
+            x.send(options.data);
+        }
+        getData()
+    </script>
+    
+</body>
+</html>
